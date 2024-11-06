@@ -1,7 +1,7 @@
 name: 'Summarise dbt-contracts results'
 branding:
   icon: 'table'
-  color: 'magenta'
+  color: 'purple'
 author: 'George Martin Marino'
 description: 'Creates a summary table on actions to summarise results from dbt-contracts'
 inputs:
