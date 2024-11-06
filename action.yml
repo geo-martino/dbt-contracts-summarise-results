@@ -31,7 +31,6 @@ inputs:
   job-name:
     description: |-
       The github job name. Currently only used to get the url of the summary table.
-      Currently only used to get the url of the summary table when the action is being run as part of a PR.
       If not provided, a link to the summary table will not be generated.
     required: false
   event-number:
