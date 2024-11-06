@@ -44,8 +44,8 @@ runs:
         ANNOTATIONS_PATH: ${{ inputs.path }}
         TITLE: ${{ inputs.title }}
         FILE_DIR: ${{ inputs.additional-file-dir }}
-      run: $GITHUB_ACTION_PATH/dist/summarise_results.sh
+      run: ${{ github.action_path }}/dist/summarise_results.sh
 
     - name: Show summary url
       shell: bash
-      run: $GITHUB_ACTION_PATH/dist/show_summary_url.sh
+      run: ${{ github.action_path }}/dist/show_summary_url.sh
