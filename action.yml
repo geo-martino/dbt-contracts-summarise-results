@@ -25,6 +25,7 @@ inputs:
     description: |-
       Token used to interact with the GitHub API.
       Currently only used to get the url of the summary table.
+      This token must have the permissions 'contents: read' and 'actions: read' to get the jobs from the API.
       If not provided, a link to the summary table will not be generated.
     required: false
   event-number:
