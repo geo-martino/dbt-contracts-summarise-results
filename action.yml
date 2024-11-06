@@ -38,16 +38,20 @@ runs:
             exit 1
         fi
 
+    - name: Set GitHub Path
+      shell: bash
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+
     - name: Populate summary
       shell: bash
       env:
         ANNOTATIONS_PATH: ${{ inputs.path }}
         TITLE: ${{ inputs.title }}
         FILE_DIR: ${{ inputs.additional-file-dir }}
-      run: "dist/summarise_results.sh"
+      run: dist/summarise_results.sh
 
     - name: Show summary url
       shell: bash
-      run: |
-        summary_url="$(".github/workflows/scripts/get_summary_url.sh")"
-        echo "::notice::View the summary: $summary_url"
+      run: dist/show_summary_url.sh

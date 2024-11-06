@@ -14,4 +14,5 @@ if [[ "$GITHUB_EVENT_NAME" =~ "pull_request" ]]; then
   run_url_path="${run_url_path}?pr=$GITHUB_EVENT_NUMBER"
 fi
 
-echo "$GITHUB_SERVER_URL/${run_url_path}#summary-$job_id"
+summary_url="$GITHUB_SERVER_URL/${run_url_path}#summary-$job_id"
+echo "::notice::View the summary: $summary_url"
