@@ -34,7 +34,6 @@ inputs:
       The github job name. Currently only used to get the url of the summary table.
       If not provided, a link to the summary table will not be generated.
     required: false
-    default: ${{ github.job }}
   event-number:
     description: |-
       The github event number i.e. the pull request number. 
@@ -65,9 +64,9 @@ runs:
 
     - name: Show summary url
       shell: bash
-      if: ${{ inputs.token != '' || inputs.job-name != '' }}
+      if: ${{ inputs.token != '' && inputs.job-name != '' }}
       env:
         GH_TOKEN: ${{ inputs.token }}
-        GH_JOB: ${{ inputs.job-name }}
+        GH_JOB_NAME: ${{ inputs.job-name }}
         GH_EVENT_NUMBER: ${{ inputs.event-number }}
       run: ${{ github.action_path }}/dist/show_summary_url.sh
