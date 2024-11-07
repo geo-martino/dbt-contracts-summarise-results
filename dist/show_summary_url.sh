@@ -2,7 +2,7 @@
 
 run_url_path="$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
 
-# TODO: workaround to get job ID from API. Fix hardcoded name in 'contains' jq filter.
+# TODO: workaround to get the current job ID from API. Figure out a better way to do this maybe?
 job_url="$GITHUB_API_URL/repos/${run_url_path}/jobs"
 job_response="$(curl -s -X GET -f \
     -H "Authorization: Bearer $GH_TOKEN" \
