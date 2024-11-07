@@ -68,6 +68,6 @@ runs:
       if: ${{ inputs.token != '' || inputs.job-name != '' }}
       env:
         GH_TOKEN: ${{ inputs.token }}
-        GH_JOB_NAME: ${{ inputs.job-name }}
+        GH_JOB: ${{ inputs.job-name }}
         GH_EVENT_NUMBER: ${{ inputs.event-number }}
       run: ${{ github.action_path }}/dist/show_summary_url.sh
