@@ -44,7 +44,7 @@ runs:
   using: "composite"
   steps:
     - name: Check file exists
-      if: ${{ ! inputs.ignore-missing-file }}
+      if: ${{ inputs.ignore-missing-file == 'false' }}
       shell: bash
       env:
         ANNOTATIONS_PATH: ${{ inputs.path }}
