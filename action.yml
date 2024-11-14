@@ -44,7 +44,7 @@ runs:
   using: "composite"
   steps:
     - name: Check file exists
-      if: ${{ inputs.ignore-missing-file == 'false' }}
+      if: inputs.ignore-missing-file == 'false'
       shell: bash
       env:
         ANNOTATIONS_PATH: ${{ inputs.path }}
@@ -64,7 +64,7 @@ runs:
 
     - name: Show summary url
       shell: bash
-      if: ${{ inputs.token != '' && inputs.job-name != '' }}
+      if: inputs.token != '' && inputs.job-name != ''
       env:
         GH_TOKEN: ${{ inputs.token }}
         GH_JOB_NAME: ${{ inputs.job-name }}
