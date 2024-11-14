@@ -1,0 +1,57 @@
+name: Update major and minor version tags
+run-name: Update major and minor version tags for ${{ github.event.release.tag_name }}
+
+on:
+  release:
+    types: [ published ]
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  major:
+    name: Update major version tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Get major version
+        id: version
+        run: |
+          version="$(sed -r "s|^v([0-9]+)\..*$|v\\1|" <<< "${{ github.event.release.tag_name }}")"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Set tag
+        run: |
+          git tag -f ${{ steps.version.outputs.version }}
+
+      - name: Push new tag
+        run: |
+          git push origin ${{ steps.version.outputs.version }} --force
+
+  minor:
+    name: Update minor version tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Get minor version
+        id: version
+        run: |
+          version="$(sed -r "s|^v([0-9]+)\.([0-9]+)\..*$|v\\1.\\2|" <<< "${{ github.event.release.tag_name }}")"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Set tag
+        run: |
+          git tag -f ${{ steps.version.outputs.version }}
+
+      - name: Push new tag
+        run: |
+          git push origin ${{ steps.version.outputs.version }} --force

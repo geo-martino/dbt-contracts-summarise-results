@@ -60,7 +60,7 @@ runs:
         ANNOTATIONS_PATH: ${{ inputs.path }}
         TITLE: ${{ inputs.title }}
         FILE_DIR: ${{ inputs.additional-file-dir }}
-      run: ${{ github.action_path }}/dist/summarise_results.sh
+      run: ${{ github.action_path }}/scripts/summarise_results.sh
 
     - name: Show summary url
       shell: bash
@@ -69,4 +69,4 @@ runs:
         GH_TOKEN: ${{ inputs.token }}
         GH_JOB_NAME: ${{ inputs.job-name }}
         GH_EVENT_NUMBER: ${{ inputs.event-number }}
-      run: ${{ github.action_path }}/dist/show_summary_url.sh
+      run: ${{ github.action_path }}/scripts/show_summary_url.sh
